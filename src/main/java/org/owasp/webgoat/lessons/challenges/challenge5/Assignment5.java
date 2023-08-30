@@ -24,7 +24,7 @@ public class Assignment5 extends AssignmentEndpoint {
   private final LessonDataSource dataSource;
   private final Flags flags;
 
-  @PostMapping("/challenge/5")
+  @PostMapping("/vcops/filter")
   @ResponseBody
   public AttackResult login(
       @RequestParam String username_login, @RequestParam String password_login) throws Exception {

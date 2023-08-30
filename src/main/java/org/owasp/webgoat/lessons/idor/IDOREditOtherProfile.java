@@ -35,17 +35,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AssignmentHints({
-  "idor.hints.otherProfile1",
-  "idor.hints.otherProfile2",
-  "idor.hints.otherProfile3",
-  "idor.hints.otherProfile4",
-  "idor.hints.otherProfile5",
-  "idor.hints.otherProfile6",
-  "idor.hints.otherProfile7",
-  "idor.hints.otherProfile8",
-  "idor.hints.otherProfile9"
-})
 public class IDOREditOtherProfile extends AssignmentEndpoint {
 
   @Autowired private UserSessionData userSessionData;

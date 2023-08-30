@@ -1,4 +1,4 @@
-package org.owasp.webgoat.lessons.pathtraversal;
+package org.owasp.webgoat.lessons.icons;
 
 import static org.springframework.http.MediaType.ALL_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -29,12 +29,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@AssignmentHints({
-  "path-traversal-zip-slip.hint1",
-  "path-traversal-zip-slip.hint2",
-  "path-traversal-zip-slip.hint3",
-  "path-traversal-zip-slip.hint4"
-})
 @Slf4j
 public class ProfileZipSlip extends ProfileUploadBase {
 
@@ -44,13 +38,13 @@ public class ProfileZipSlip extends ProfileUploadBase {
   }
 
   @PostMapping(
-      value = "/PathTraversal/zip-slip",
+      value = "/Icons/zip",
       consumes = ALL_VALUE,
       produces = APPLICATION_JSON_VALUE)
   @ResponseBody
-  public AttackResult uploadFileHandler(@RequestParam("uploadedFileZipSlip") MultipartFile file) {
+  public AttackResult uploadFileHandler(@RequestParam("uploadedFile") MultipartFile file) {
     if (!file.getOriginalFilename().toLowerCase().endsWith(".zip")) {
-      return failed(this).feedback("path-traversal-zip-slip.no-zip").build();
+      return failed(this).feedback("icons-slip.no-zip").build();
     } else {
       return processZipUpload(file);
     }
@@ -83,18 +77,18 @@ public class ProfileZipSlip extends ProfileUploadBase {
 
   private AttackResult isSolved(byte[] currentImage, byte[] newImage) {
     if (Arrays.equals(currentImage, newImage)) {
-      return failed(this).output("path-traversal-zip-slip.extracted").build();
+      return failed(this).output("icons.extracted").build();
     }
-    return success(this).output("path-traversal-zip-slip.extracted").build();
+    return success(this).output("icons.extracted").build();
   }
 
-  @GetMapping("/PathTraversal/zip-slip/")
+  @GetMapping("/Icons/zip/")
   @ResponseBody
   public ResponseEntity<?> getProfilePicture() {
     return super.getProfilePicture();
   }
 
-  @GetMapping("/PathTraversal/zip-slip/profile-image/{username}")
+  @GetMapping("/Icons/zip/profile-image/{username}")
   @ResponseBody
   public ResponseEntity<?> getProfilePicture(@PathVariable("username") String username) {
     return ResponseEntity.notFound().build();

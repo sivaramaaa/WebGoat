@@ -32,11 +32,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AssignmentHints({
-  "idor.hints.idorDiffAttributes1",
-  "idor.hints.idorDiffAttributes2",
-  "idor.hints.idorDiffAttributes3"
-})
 public class IDORDiffAttributes extends AssignmentEndpoint {
 
   @PostMapping("/IDOR/diff-attributes")

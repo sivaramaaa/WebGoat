@@ -9,5 +9,5 @@ A nice read why it is not enough can be found https://twitter.com/marcan42/statu
 Let's repeat one of the previous assignments, the developer fixed the possible SQL injection with filtering, can you
 spot the weakness in this approach?
 
-Read about the lesson goal link:start.mvc#lesson/SqlInjectionAdvanced.lesson/2[here].
+Read about the lesson goal link:start.mvc#lesson/DBAdvanced.lesson/2[here].
 

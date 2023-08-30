@@ -35,7 +35,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AssignmentHints({"idor.hints.idor_login"})
 public class IDORLogin extends AssignmentEndpoint {
 
   private Map<String, Map<String, String>> idorUserInfo = new HashMap<>();

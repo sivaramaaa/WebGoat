@@ -8,11 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-public class SqlInjectionMitigationIntegrationTest extends IntegrationTest {
+public class DBMitigationIntegrationTest extends IntegrationTest {
 
   @Test
   public void runTests() {
-    startLesson("SqlInjectionMitigations");
+    startLesson("DBMitigations");
 
     Map<String, Object> params = new HashMap<>();
     params.clear();
@@ -23,7 +23,7 @@ public class SqlInjectionMitigationIntegrationTest extends IntegrationTest {
     params.put("field5", "?");
     params.put("field6", "prep.setString(1,\"\")");
     params.put("field7", "prep.setString(2,\\\"\\\")");
-    checkAssignment(url("/WebGoat/SqlInjectionMitigations/attack10a"), params, true);
+    checkAssignment(url("/WebGoat/DBMitigations/attack10a"), params, true);
 
     params.put(
         "editor",
@@ -37,7 +37,7 @@ public class SqlInjectionMitigationIntegrationTest extends IntegrationTest {
             + "} catch (Exception e) {\r\n"
             + "    System.out.println(\"Oops. Something went wrong!\");\r\n"
             + "}");
-    checkAssignment(url("/WebGoat/SqlInjectionMitigations/attack10b"), params, true);
+    checkAssignment(url("/WebGoat/DBMitigations/attack10b"), params, true);
 
     params.clear();
     params.put(
@@ -57,7 +57,7 @@ public class SqlInjectionMitigationIntegrationTest extends IntegrationTest {
         .contentType(ContentType.JSON)
         .get(
             url(
-                "/WebGoat/SqlInjectionMitigations/servers?column=(case when (true) then hostname"
+                "/WebGoat/DBMitigations/servers?column=(case when (true) then hostname"
                     + " else id end)"))
         .then()
         .statusCode(200);
@@ -67,7 +67,7 @@ public class SqlInjectionMitigationIntegrationTest extends IntegrationTest {
         .relaxedHTTPSValidation()
         .cookie("JSESSIONID", getWebGoatCookie())
         .contentType(ContentType.JSON)
-        .get(url("/WebGoat/SqlInjectionMitigations/servers?column=unknown"))
+        .get(url("/WebGoat/DBMitigations/servers?column=unknown"))
         .then()
         .statusCode(500)
         .body(
@@ -78,7 +78,7 @@ public class SqlInjectionMitigationIntegrationTest extends IntegrationTest {
 
     params.clear();
     params.put("ip", "104.130.219.202");
-    checkAssignment(url("/WebGoat/SqlInjectionMitigations/attack12a"), params, true);
+    checkAssignment(url("/WebGoat/DBMitigations/attack12a"), params, true);
 
     checkResults();
   }

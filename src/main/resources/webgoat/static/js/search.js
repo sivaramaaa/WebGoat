@@ -16,7 +16,7 @@ function search(arg) {
         lessonLowerCase = lesson.textContent.toLowerCase();
         if (arg.length>2 && lessonLowerCase.includes(arg.toLowerCase())) {
             if (arg.length<7 && arg.toLowerCase().includes('sql')) {
-                elementId = 'A3Injection-SQLInjectionintro';
+                elementId = 'A3Injection-DBintro';
                 document.getElementById('search').value='sql injection';
             } else if (arg.length<9 && arg.toLowerCase().includes('pass')) {
                 elementId = 'A7IdentityAuthFailure-Passwordreset';

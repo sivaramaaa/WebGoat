@@ -119,9 +119,9 @@ public class LabelAndHintIntegrationTest extends IntegrationTest {
             "CrossSiteScripting",
             "CSRF",
             "HijackSession",
-            "SqlInjection",
-            "SqlInjectionMitigations",
-            "SqlInjectionAdvanced",
+            "DB",
+            "DBMitigations",
+            "DBAdvanced",
             "Challenge1");
     for (String lesson : allLessons) {
       startLesson(lesson);

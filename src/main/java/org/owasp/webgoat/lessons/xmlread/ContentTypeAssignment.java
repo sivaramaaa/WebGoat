@@ -1,26 +1,4 @@
-/*
- * This file is part of WebGoat, an Open Web Application Security Project utility. For details, please see http://www.owasp.org/
- *
- * Copyright (c) 2002 - 2019 Bruce Mayhew
- *
- * This program is free software; you can redistribute it and/or modify it under the terms of the
- * GNU General Public License as published by the Free Software Foundation; either version 2 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
- * even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License along with this program; if
- * not, write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
- * 02111-1307, USA.
- *
- * Getting Source ==============
- *
- * Source for this application is maintained at https://github.com/WebGoat/WebGoat, a repository for free software projects.
- */
-
-package org.owasp.webgoat.lessons.xxe;
+package org.owasp.webgoat.lessons.xmlread;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -41,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AssignmentHints({"xxe.hints.content.type.xxe.1", "xxe.hints.content.type.xxe.2"})
 public class ContentTypeAssignment extends AssignmentEndpoint {
 
   private static final String[] DEFAULT_LINUX_DIRECTORIES = {"usr", "etc", "var"};
@@ -55,7 +32,7 @@ public class ContentTypeAssignment extends AssignmentEndpoint {
   @Autowired private WebSession webSession;
   @Autowired private CommentsCache comments;
 
-  @PostMapping(path = "xxe/content-type")
+  @PostMapping(path = "/xmlread/content-type")
   @ResponseBody
   public AttackResult createNewUser(
       HttpServletRequest request,
@@ -65,7 +42,7 @@ public class ContentTypeAssignment extends AssignmentEndpoint {
 
     if (APPLICATION_JSON_VALUE.equals(contentType)) {
       comments.parseJson(commentStr).ifPresent(c -> comments.addComment(c, true));
-      attackResult = failed(this).feedback("xxe.content.type.feedback.json").build();
+      attackResult = failed(this).feedback("xmlread.content.type.feedback.json").build();
     }
 
     if (null != contentType && contentType.contains(MediaType.APPLICATION_XML_VALUE)) {
@@ -78,7 +55,7 @@ public class ContentTypeAssignment extends AssignmentEndpoint {
         }
       } catch (Exception e) {
         error = ExceptionUtils.getStackTrace(e);
-        attackResult = failed(this).feedback("xxe.content.type.feedback.xml").output(error).build();
+        attackResult = failed(this).feedback("xmlread.content.type.feedback.xml").output(error).build();
       }
     }
 

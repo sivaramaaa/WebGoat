@@ -1,4 +1,4 @@
-package org.owasp.webgoat.lessons.pathtraversal;
+package org.owasp.webgoat.lessons.icons;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,10 +30,10 @@ public class ProfileUploadBase extends AssignmentEndpoint {
 
   protected AttackResult execute(MultipartFile file, String fullName) {
     if (file.isEmpty()) {
-      return failed(this).feedback("path-traversal-profile-empty-file").build();
+      return failed(this).feedback("icons-profile-empty-file").build();
     }
     if (StringUtils.isEmpty(fullName)) {
-      return failed(this).feedback("path-traversal-profile-empty-name").build();
+      return failed(this).feedback("icons-profile-empty-name").build();
     }
 
     File uploadDirectory = cleanupAndCreateDirectoryForUser();
@@ -47,7 +47,7 @@ public class ProfileUploadBase extends AssignmentEndpoint {
         return solvedIt(uploadedFile);
       }
       return informationMessage(this)
-          .feedback("path-traversal-profile-updated")
+          .feedback("icons-profile-updated")
           .feedbackArgs(uploadedFile.getAbsoluteFile())
           .build();
 
@@ -59,7 +59,7 @@ public class ProfileUploadBase extends AssignmentEndpoint {
   @SneakyThrows
   protected File cleanupAndCreateDirectoryForUser() {
     var uploadDirectory =
-        new File(this.webGoatHomeDirectory, "/PathTraversal/" + webSession.getUserName());
+        new File(this.webGoatHomeDirectory, "/Icons/" + webSession.getUserName());
     if (uploadDirectory.exists()) {
       FileSystemUtils.deleteRecursively(uploadDirectory);
     }
@@ -93,7 +93,7 @@ public class ProfileUploadBase extends AssignmentEndpoint {
 
   protected byte[] getProfilePictureAsBase64() {
     var profilePictureDirectory =
-        new File(this.webGoatHomeDirectory, "/PathTraversal/" + webSession.getUserName());
+        new File(this.webGoatHomeDirectory, "/Icons/" + webSession.getUserName());
     var profileDirectoryFiles = profilePictureDirectory.listFiles();
 
     if (profileDirectoryFiles != null && profileDirectoryFiles.length > 0) {

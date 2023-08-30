@@ -13,10 +13,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-/**
- * @author afry
- * @since 12/28/18.
- */
+
 @ExtendWith(SpringExtension.class)
 public class SSRFTest1 extends LessonTest {
 

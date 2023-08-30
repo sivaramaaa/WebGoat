@@ -34,11 +34,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AssignmentHints({
-  "idor.hints.ownProfileAltUrl1",
-  "idor.hints.ownProfileAltUrl2",
-  "idor.hints.ownProfileAltUrl3"
-})
 public class IDORViewOwnProfileAltUrl extends AssignmentEndpoint {
 
   @Autowired UserSessionData userSessionData;

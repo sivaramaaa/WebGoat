@@ -1,4 +1,4 @@
-package org.owasp.webgoat.lessons.sqlinjection.mitigation;
+package org.owasp.webgoat.lessons.db.mitigation;
 
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.is;
@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
-import org.owasp.webgoat.lessons.sqlinjection.SqlLessonTest;
+import org.owasp.webgoat.lessons.db.SqlLessonTest;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 public class SqlOnlyInputValidationTest extends SqlLessonTest {

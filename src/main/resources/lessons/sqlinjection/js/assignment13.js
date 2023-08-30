@@ -40,7 +40,7 @@ var html = '<tr class="STATUS">' +
     '</tr>';
 
 function getServers(column) {
-    $.get("SqlInjectionMitigations/servers?column=" + column, function (result, status) {
+    $.get("DBMitigations/servers?column=" + column, function (result, status) {
         $("#servers").empty();
         for (var i = 0; i < result.length; i++) {
             var server = html.replace('ID', result[i].id);

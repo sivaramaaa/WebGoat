@@ -6,10 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @author nbaars
- * @since 3/19/17.
- */
+
 @Getter
 @Setter
 public class UserForm {

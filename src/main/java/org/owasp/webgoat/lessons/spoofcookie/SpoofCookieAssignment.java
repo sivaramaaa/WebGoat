@@ -46,7 +46,6 @@ import org.springframework.web.bind.annotation.RestController;
  *
  */
 
-@AssignmentHints({"spoofcookie.hint1", "spoofcookie.hint2", "spoofcookie.hint3"})
 @RestController
 public class SpoofCookieAssignment extends AssignmentEndpoint {
 

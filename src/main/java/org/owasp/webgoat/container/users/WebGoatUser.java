@@ -11,10 +11,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
-/**
- * @author nbaars
- * @since 3/19/17.
- */
 @Getter
 @Entity
 public class WebGoatUser implements UserDetails {

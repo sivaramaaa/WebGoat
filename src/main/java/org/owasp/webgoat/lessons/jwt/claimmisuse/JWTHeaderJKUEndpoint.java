@@ -22,13 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/JWT/jku")
 @RestController
-@AssignmentHints({
-  "jwt-jku-hint1",
-  "jwt-jku-hint2",
-  "jwt-jku-hint3",
-  "jwt-jku-hint4",
-  "jwt-jku-hint5"
-})
 public class JWTHeaderJKUEndpoint extends AssignmentEndpoint {
 
   @PostMapping("/follow/{user}")

@@ -1,24 +1,21 @@
-package org.owasp.webgoat.lessons.sqlinjection.mitigation;
+package org.owasp.webgoat.lessons.db.mitigation;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
-import org.owasp.webgoat.lessons.sqlinjection.SqlLessonTest;
+import org.owasp.webgoat.lessons.db.SqlLessonTest;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-/**
- * @author nbaars
- * @since 5/21/17.
- */
-public class SqlInjectionLesson13Test extends SqlLessonTest {
+
+public class DBLesson13Test extends SqlLessonTest {
 
   @Test
   public void knownAccountShouldDisplayData() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers").param("column", "id"))
+            MockMvcRequestBuilders.get("/DBMitigations/servers").param("column", "id"))
         .andExpect(status().isOk());
   }
 
@@ -26,7 +23,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void addressCorrectShouldOrderByHostname() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param(
                     "column",
                     "CASE WHEN (SELECT ip FROM servers WHERE hostname='webgoat-prd') LIKE '104.%'"
@@ -39,7 +36,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void addressCorrectShouldOrderByHostnameUsingSubstr() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param(
                     "column",
                     "case when (select ip from servers where hostname='webgoat-prd' and"
@@ -49,7 +46,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
 
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param(
                     "column",
                     "case when (select ip from servers where hostname='webgoat-prd' and"
@@ -59,7 +56,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
 
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param(
                     "column",
                     "case when (select ip from servers where hostname='webgoat-prd' and"
@@ -72,7 +69,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void addressIncorrectShouldOrderByIdUsingSubstr() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param(
                     "column",
                     "case when (select ip from servers where hostname='webgoat-prd' and"
@@ -85,7 +82,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void trueShouldSortByHostname() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param("column", "(case when (true) then hostname else id end)"))
         .andExpect(status().isOk())
         .andExpect(status().isOk())
@@ -96,7 +93,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void falseShouldSortById() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param("column", "(case when (true) then hostname else id end)"))
         .andExpect(status().isOk())
         .andExpect(status().isOk())
@@ -107,7 +104,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void addressIncorrectShouldOrderByHostname() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/SqlInjectionMitigations/servers")
+            MockMvcRequestBuilders.get("/DBMitigations/servers")
                 .param(
                     "column",
                     "CASE WHEN (SELECT ip FROM servers WHERE hostname='webgoat-prd') LIKE '192.%'"
@@ -120,7 +117,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void postingCorrectAnswerShouldPassTheLesson() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/SqlInjectionMitigations/attack12a")
+            MockMvcRequestBuilders.post("/DBMitigations/attack12a")
                 .param("ip", "104.130.219.202"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.lessonCompleted", is(true)));
@@ -130,7 +127,7 @@ public class SqlInjectionLesson13Test extends SqlLessonTest {
   public void postingWrongAnswerShouldNotPassTheLesson() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/SqlInjectionMitigations/attack12a")
+            MockMvcRequestBuilders.post("/DBMitigations/attack12a")
                 .param("ip", "192.168.219.202"))
         .andExpect(status().isOk())
         .andExpect(jsonPath("$.lessonCompleted", is(false)));
